@@ -590,7 +590,7 @@ function validStyles(styleAttr){
                                )
 			||
 				(key === 'width' || key === 'height') && (
-					value.match(/[0-9\.]*(px|em|rem|%)/)
+					value.match(/(([0-9\.]*(px|em|rem|%))| auto)/)
 				)
 			|| // Reference #520
 				(key === 'direction' && value.match(/^ltr|rtl|initial|inherit$/))
@@ -628,6 +628,10 @@ function validStyles(styleAttr){
 				(key === 'border-style' && value.match(styleComponent))
 			||
 				(key === 'border-color' && value.match(colorComponent))
+			||
+				(key === 'max-width' && value.match(lengthComponent))
+			||
+				(key === 'max-height' && value.match(lengthComponent))
 			) result += key + ': ' + full_value + ';';
 		}
 	});
